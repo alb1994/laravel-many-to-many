@@ -28,6 +28,8 @@
                 <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 <a class="navbar-brand" href="{{ route('admin.posts.index') }}">Post</a>
                 <a class="navbar-brand" href="{{ route('admin.posts.create') }}">Aggiungi Post</a>
+                <a class="navbar-brand" href="{{ route('admin.tags.index') }}">Tags</a>
+                <a class="navbar-brand" href="{{ route('admin.categories.index') }}">Categorie</a>
             </div>
         </nav>
 

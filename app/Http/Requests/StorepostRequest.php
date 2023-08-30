@@ -26,8 +26,9 @@ class StorepostRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'cover_image' => 'image|max:550',
-            'category_id' => 'required|exists:categories,id' // Corretto il nome del campo "category_id"
-        ];
+            'category_id' => 'required|exists:categories,id', // Corretto il nome del campo "category_id"
+            'tag_id' => 'exists:categories,id'
+        ];  
     }
 
     public function messages()
@@ -38,7 +39,8 @@ class StorepostRequest extends FormRequest
             'cover_image.image' => 'Il file contiene un formato non supportato',
             'cover_image.max' => 'Il nome del file deve contenere meno di :max caratteri', // Corretto il messaggio
             'category_id.required' => 'Devi selezionare una categoria',
-            'category_id.exists' => 'Categoria selezionata non valida'
+            'category_id.exists' => 'Categoria selezionata non valida',
+            'tag_id.exists' => 'Tag selezionato non valido'
         ];
     }
 }

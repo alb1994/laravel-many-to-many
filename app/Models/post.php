@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\Tag;
 
 class post extends Model
 {
@@ -17,8 +18,15 @@ class post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function tag(){
+        return $this->belongsToMany(Tag::class);
+    }
+
     public static function generateSlug($title){
         return Str::slug($title,'-');
     }
-
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

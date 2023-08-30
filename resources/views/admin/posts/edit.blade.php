@@ -25,6 +25,18 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="form-check @error('tags') is-invalid @enderror">
+                    @foreach ($tags as $tag)
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}" 
+                            {{ in_array($tag->id, old('tags', $post->tags->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="tag{{ $tag->id }}">{{ $tag->name }}</label>
+                        </div>
+                    @endforeach
+                    @error('tags')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 <div class="mb-3">
                     @if($post->cover_image)
                         <div>
@@ -37,11 +49,12 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <label for="category_id" class="form-label">Categoria</label>
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Categoria</label>
                     <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
                         <option value="">Seleziona la categoria</option>
                         @foreach($categories as $category)
-                        <option {{ $category->id == old('category_id', $post->category_id) ? 'selected' : '' }} value="{{ $category->id }}">
+                            <option {{ $category->id == old('category_id', $post->category_id) ? 'selected' : '' }} value="{{ $category->id }}">
                                 {{ $category->name }}
                             </option>
                         @endforeach
@@ -49,6 +62,7 @@
                     @error('category_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                </div>
                 <button type="submit" class="btn btn-primary">Salva</button>
             </form>
         </div>
